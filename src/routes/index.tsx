@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Github, Linkedin, Instagram, Twitter, Mail, Dribbble } from "lucide-react";
 import { lazy, Suspense, useEffect, useState } from "react";
-import heroAnim from "@/assets/developer-skills.json.asset.json";
+import heroAnim from "@/assets/developer-skills.json";
+console.log(heroAnim);
 
 const Lottie = lazy(() => import("lottie-react"));
 
@@ -32,29 +33,12 @@ export const Route = createFileRoute("/")({
       { name: "twitter:title", content: "Nikhil Kumar Raushan — Portfolio" },
       { name: "twitter:description", content: "UI/UX Designer | Frontend Developer | Graphic Designer" },
     ],
-    links: [
-      { rel: "canonical", href: "/" },
-      { rel: "preload", as: "fetch", href: heroAnim.url, crossOrigin: "anonymous" },
-    ],
   }),
   component: Home,
 });
 
 function Home() {
-  const [animData, setAnimData] = useState<unknown>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch(heroAnim.url)
-      .then((r) => r.json())
-      .then((data) => {
-        if (!cancelled) setAnimData(data);
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const [animData] = useState(heroAnim);
 
   return (
     <div className="flex flex-1 flex-col justify-center">
@@ -68,14 +52,15 @@ function Home() {
             UI/UX Designer <span className="text-accent">|</span> Frontend Developer <span className="text-accent">|</span> Graphic Designer
           </p>
           <a
-            href="../lovable/Nikhil%20CV.pdf"
+            href="../.lovable/Nikhil CV.pdf"
             className="mt-5 inline-block rounded-md border border-foreground/70 px-6 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:bg-accent hover:text-background md:text-base"
           >
             View Resume
           </a>
         </div>
         <div className="flex-1">
-          <div className="mx-auto aspect-square w-full max-w-[240px] md:max-w-sm">
+          <div className="mx-auto aspect-square w-[100px] sm:w-[140px] md:w-[200
+          px] lg:w-[240px]">
             {animData ? (
               <Suspense fallback={null}>
                 <Lottie animationData={animData} loop autoplay />
@@ -85,7 +70,7 @@ function Home() {
         </div>
       </section>
 
-      <div className="flex justify-center gap-5 pb-2 md:gap-6 md:pb-4">
+      <div className="flex justify-center gap-5 pb-2 md:gap-6 md:pb-4 mt-25">
         {SOCIALS.map(({ Icon, href, label }) => (
           <a
             key={label}
@@ -93,7 +78,7 @@ function Home() {
             aria-label={label}
             className="text-muted transition-all duration-200 hover:scale-125 hover:text-accent"
           >
-            <Icon className="h-5 w-5" />
+            <Icon className="h-6 w-6" />
           </a>
         ))}
       </div>

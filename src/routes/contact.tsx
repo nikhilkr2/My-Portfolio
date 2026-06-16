@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -19,11 +20,24 @@ function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio contact from ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:nikhilkumarraushan@gmail.com?subject=${subject}&body=${body}`;
-  };
+  e.preventDefault();
+
+  emailjs.send(
+    "service_eryghzm",
+    "template_fjpepub",
+    {
+      from_name: form.name,
+      from_email: form.email,
+      message: form.message,
+    },
+    "xECHERAmQ2Cy7ltUL"
+  ).then(() => {
+    alert("Message sent successfully!");
+    setForm({ name: "", email: "", message: "" });
+  }).catch(() => {
+    alert("Failed to send message!");
+  });
+};
 
   const inputClass =
     "mt-1 w-full rounded-md bg-white px-3 py-2 text-sm text-[#141a2e] outline-none ring-2 ring-transparent focus:ring-accent";
