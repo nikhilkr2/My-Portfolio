@@ -52,7 +52,7 @@ function Home() {
             UI/UX Designer <span className="text-accent">|</span> Frontend Developer <span className="text-accent">|</span> Graphic Designer
           </p>
           <a
-            href="../.lovable/Nikhil CV.pdf"
+            href="/Nikhil CV.pdf"
             className="mt-5 inline-block rounded-md border border-foreground/70 px-6 py-2.5 text-sm font-medium transition-colors hover:border-accent hover:bg-accent hover:text-background md:text-base"
           >
             View Resume
@@ -75,6 +75,8 @@ function Home() {
           <a
             key={label}
             href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={label}
             className="text-muted transition-all duration-200 hover:scale-125 hover:text-accent"
           >
