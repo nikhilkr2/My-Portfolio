@@ -58,12 +58,11 @@ function Home() {
             View Resume
           </a>
         </div>
-        <div className="flex-1">
-          <div className="mx-auto aspect-square w-[100px] sm:w-[140px] md:w-[200
-          px] lg:w-[240px]">
+        <div className="flex-1 flex justify-end">
+          <div className="aspect-square w-[160px] sm:w-[200px] md:w-[280px] lg:w-[340px]">
             {animData ? (
               <Suspense fallback={null}>
-                <Lottie animationData={animData} loop autoplay />
+                <Lottie animationData={animData} loop autoplay style={{ width: "100%", height: "100%" }}/>
               </Suspense>
             ) : null}
           </div>

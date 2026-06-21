@@ -18,16 +18,23 @@ export function SiteLayout() {
               key={item.label}
               to={item.to}
               activeOptions={{ exact: true }}
-              activeProps={{ className: "text-accent" }}
-              className="inline-block text-foreground/90 transition-all duration-200 hover:text-accent hover:scale-110"
-            >
-              {item.label}
-            </Link>
+              className="relative inline-block text-foreground/90 transition-all duration-200 hover:text-accent hover:scale-110">
+            {({ isActive }) => (
+              <span>
+                {item.label}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 w-full bg-accent transition-transform duration-200 ${
+                    isActive ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </span>
+            )}
+           </Link>
           ))}
         </nav>
       </header>
 
-      <main className="flex min-h-0 flex-1 flex-col overflow-y-auto">
+      <main className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden">
         <Outlet />
       </main>
 

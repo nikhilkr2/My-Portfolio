@@ -88,33 +88,33 @@ const orbitIcons: Skill[] = [
 function Skills() {
   return (
     <section className="mx-auto grid w-full max-w-6xl flex-1 content-center items-center gap-6 px-6 py-3 md:grid-cols-2 md:gap-10">
-      <div>
-        <h1 className="text-xl font-bold md:text-2xl">My Tech Stack</h1>
+      <div className="-mt-6 md:-mt-10">
+       <h1 className="inline-block border-b-2 border-foreground pb-2 text-2xl font-bold md:text-3xl">My Tech Stack</h1>
+     
+       <div className="mt-6 space-y-5">
+         {groups.map((g) => (
+           <div key={g.label} className="flex items-center gap-6">
+             <div className="w-32 shrink-0 text-base text-foreground/90 md:text-lg">
+               {g.label}
+             </div>
+             <div className="flex flex-wrap items-center gap-4">
+               {g.items.map(({ name, Icon, color }) => (
+                 <span
+                   key={name}
+                   title={name}
+                   aria-label={name}
+                   className="transition-transform hover:scale-110"
+                 >
+                   <Icon size={32} color={color} />
+                 </span>
+               ))}
+             </div>
+           </div>
+         ))}
+       </div>
+     </div>
 
-        <div className="mt-4 space-y-3">
-          {groups.map((g) => (
-            <div key={g.label} className="flex items-center gap-6">
-              <div className="w-28 shrink-0 text-sm text-foreground/90 md:text-base">
-                {g.label}
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                {g.items.map(({ name, Icon, color }) => (
-                  <span
-                    key={name}
-                    title={name}
-                    aria-label={name}
-                    className="transition-transform hover:scale-110"
-                  >
-                    <Icon size={24} color={color} />
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="hidden md:block">
+      <div className="hidden md:flex md:justify-end">
         <SkillsOrbit />
       </div>
     </section>
@@ -125,7 +125,7 @@ function SkillsOrbit() {
   const count = orbitIcons.length;
   return (
     <div
-      className="relative mx-auto aspect-square w-full max-w-[280px] lg:max-w-[320px]"
+      className="relative aspect-square w-full max-w-[280px] lg:max-w-[320px]"
       aria-hidden="true"
     >
       {/* soft radial glow blended with background */}
