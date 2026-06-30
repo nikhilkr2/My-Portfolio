@@ -40,7 +40,7 @@ function About() {
         <InfoBlock title="Hobbies" items={["Coding", "Sketching", "Reading", "Designing"]} />
         <InfoBlock
           title="Language proficiencies"
-          items={["Hindi", "English", "Bhojpuri (Native)"]}
+          items={["Hindi (Native)", "English", "Bhojpuri"]}
         />
       </div>
     </section>
